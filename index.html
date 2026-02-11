@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfinityFilms | Análisis y Crítica Cinematográfica</title>
+    <style>
+        /* --- VARIABLES Y RESET --- */
+        :root {
+            --bg-color: #0f1014;
+            --card-bg: #1b1d24;
+            --accent-color: #e50914; /* Rojo tipo Netflix */
+            --accent-hover: #b20710;
+            --text-main: #ffffff;
+            --text-muted: #b3b3b3;
+            --gold: #f5c518;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- NAV --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 5%; position: fixed; width: 100%; top: 0;
+            background: rgba(15, 16, 20, 0.95); z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .logo span { color: var(--accent-color); }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a:hover { color: var(--accent-color); }
+        .btn-subscribe {
+            padding: 0.5rem 1.2rem; background: var(--accent-color);
+            border-radius: 4px; font-weight: bold;
+        }
+        .btn-subscribe:hover { background: var(--accent-hover); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.6), var(--bg-color)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 1rem; margin-top: 60px;
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; max-width: 800px; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; }
+        .btn-main {
+            padding: 1rem 2rem; border: 2px solid var(--accent-color);
+            color: var(--text-main); font-weight: bold; text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-main:hover { background: var(--accent-color); }
+
+        /* --- CATEGORIAS / FEATURES --- */
+        .features { padding: 4rem 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center; }
+        .feature-card { padding: 2rem; background: var(--card-bg); border-radius: 8px; border: 1px solid #333; }
+        .feature-card h3 { margin-bottom: 1rem; color: var(--gold); }
+
+        /* --- BLOG GRID --- */
+        .latest-posts { padding: 4rem 5%; }
+        .section-title { margin-bottom: 2rem; font-size: 2rem; border-left: 5px solid var(--accent-color); padding-left: 1rem; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: var(--card-bg); border-radius: 8px; overflow: hidden; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card-img { height: 200px; background-color: #333; position: relative; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .tag { position: absolute; top: 10px; right: 10px; background: var(--gold); color: #000; padding: 2px 8px; font-size: 0.8rem; font-weight: bold; border-radius: 2px; }
+        .card-content { padding: 1.5rem; }
+        .card-content h3 { margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; display: flex; gap: 10px; }
+        .read-more { color: var(--accent-color); font-weight: bold; font-size: 0.9rem; }
+
+        /* --- NEWSLETTER --- */
+        .newsletter { background: linear-gradient(45deg, #1b1d24, #121212); padding: 4rem 1rem; text-align: center; border-top: 1px solid #333; }
+        .newsletter input { padding: 0.8rem; width: 300px; max-width: 100%; border: none; border-radius: 4px; margin-right: 10px; }
+        .btn-submit { padding: 0.8rem 1.5rem; background: var(--accent-color); border: none; color: white; cursor: pointer; border-radius: 4px; font-weight: bold; }
+
+        /* --- FOOTER --- */
+        footer { padding: 3rem 5%; background: #000; color: var(--text-muted); text-align: center; font-size: 0.9rem; margin-top: 2rem; }
+        
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* En producción requeriría JS para menú hamburguesa */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">INFINITY<span>FILMS</span></div>
+        <ul class="nav-links">
+            <li><a href="#reviews">Reseñas</a></li>
+            <li><a href="#news">Noticias</a></li>
+            <li><a href="#editorials">Editoriales</a></li>
+            <li><a href="#podcast">Podcast</a></li>
+        </ul>
+        <a href="#subs" class="btn-subscribe">Suscríbete</a>
+    </nav>
+
+    <header class="hero">
+        <h1>El Cine, Más Allá de la Pantalla</h1>
+        <p>Análisis profundos, críticas sin censura y la pasión por el séptimo arte que estabas buscando. Bienvenidos a InfinityFilms.</p>
+        <a href="#latest" class="btn-main">Leer Últimos Artículos</a>
+    </header>
+
+    <section class="features">
+        <div class="feature-card">
+            <h3>🎬 Reseñas Honestas</h3>
+            <p>Sin spoilers innecesarios. Valoramos la narrativa, la fotografía y la dirección.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🕵️ Análisis de Lore</h3>
+            <p>Explicaciones de finales, huevos de pascua y teorías sobre tus sagas favoritas.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🏆 Temporada de Premios</h3>
+            <p>Cobertura completa de los Oscars, Globos de Oro y festivales internacionales.</p>
+        </div>
+    </section>
+
+    <section id="latest" class="latest-posts">
+        <h2 class="section-title">En Tendencia</h2>
+        <div class="grid">
+            <article class="card">
+                <div class="card-img">
+                    <span class="tag">Crítica</span>
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cine">
+                </div>
+                <div class="card-content">
+                    <div class="meta"><span>Por Alex R.</span> • <span>Hace 2 horas</span></div>
+                    <h3>El resurgir del cine Noir en 2024</h3>
+                    <p style="color:#ccc; font-size:0.9rem; margin-bottom:1rem;">Analizamos cómo los directores modernos están adoptando las sombras y la moral ambigua...</p>
+                    <a href="#" class="read-more">Leer artículo →</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-img">
+                    <span class="tag">Noticia</span>
+                    <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cine">
+                </div>
+                <div class="card-content">
+                    <div class="meta"><span>Por CineStaff</span> • <span>Ayer</span></div>
+                    <h3>Confirmado el reparto para la nueva saga Sci-Fi</h3>
+                    <p style="color:#ccc; font-size:0.9rem; margin-bottom:1rem;">Todo lo que sabemos sobre la producción más cara de la década que arranca rodaje...</p>
+                    <a href="#" class="read-more">Leer artículo →</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-img">
+                    <span class="tag">Ensayo</span>
+                    <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e63?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cine">
+                </div>
+                <div class="card-content">
+                    <div class="meta"><span>Por Sarah M.</span> • <span>Hace 3 días</span></div>
+                    <h3>¿Por qué amamos a los villanos?</h3>
+                    <p style="color:#ccc; font-size:0.9rem; margin-bottom:1rem;">Un viaje psicológico a través de los antagonistas más icónicos de la historia.</p>
+                    <a href="#" class="read-more">Leer artículo →</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="subs" class="newsletter">
+        <h2 style="margin-bottom: 1rem;">Únete al Club de Cinefilia</h2>
+        <p style="color: #ccc; margin-bottom: 2rem;">Recibe las mejores reseñas y noticias semanales directamente en tu correo.</p>
+        <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+            <input type="email" placeholder="Tu correo electrónico..." required>
+            <button type="submit" class="btn-submit">Suscribirme</button>
+        </form>
+    </section>
+
+    <footer>
+        <h2 class="logo" style="margin-bottom:1rem;">INFINITY<span>FILMS</span></h2>
+        <p>© 2024 InfinityFilms. Todos los derechos reservados.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" style="margin:0 10px;">Twitter</a>
+            <a href="#" style="margin:0 10px;">Instagram</a>
+            <a href="#" style="margin:0 10px;">Letterboxd</a>
+        </div>
+    </footer>
+
+</body>
+</html>
