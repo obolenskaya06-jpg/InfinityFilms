@@ -1,331 +1,193 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>enelecolombia | Análisis y Crítica Cinematográfica</title>
-  <meta name="description" content="enelecolombia — Análisis profundos, críticas y noticias del cine. Contacto, políticas y términos disponibles." />
-  <link rel="canonical" href="https://www.example.com/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfinityFilms | Análisis y Crítica Cinematográfica</title>
+    <style>
+        /* --- VARIABLES Y RESET --- */
+        :root {
+            --bg-color: #0f1014;
+            --card-bg: #1b1d24;
+            --accent-color: #e50914; /* Rojo tipo Netflix */
+            --accent-hover: #b20710;
+            --text-main: #ffffff;
+            --text-muted: #b3b3b3;
+            --gold: #f5c518;
+        }
 
-  <!-- Metadatos para cumplimiento y transparencia -->
-  <meta name="author" content="enelecolombia" />
-  <meta name="robots" content="index, follow" />
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
-  <style>
-    :root{
-      --bg:#0f1014; --card:#1b1d24; --accent:#e50914; --accent-hover:#b20710;
-      --text:#ffffff; --muted:#bfbfbf; --gold:#f5c518;
-    }
-    *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif}
-    body{background:var(--bg);color:var(--text);line-height:1.6}
-    a{color:inherit;text-decoration:none}
-    nav{position:fixed;top:0;left:0;right:0;background:rgba(15,16,20,0.95);border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center;padding:14px 5%;z-index:1000}
-    .logo{font-weight:700;letter-spacing:.6px}
-    .logo span{color:var(--accent);text-transform:lowercase}
-    .nav-links{display:flex;gap:12px;align-items:center}
-    .nav-links a:hover{color:var(--accent)}
-    .btn-sub{background:var(--accent);padding:.45rem .9rem;border-radius:6px;color:#fff;font-weight:700}
-    header.hero{height:78vh;background:linear-gradient(rgba(0,0,0,.55),var(--bg)),url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 1rem;margin-top:66px}
-    header.hero h1{font-size:2.6rem;margin-bottom:.6rem;max-width:900px}
-    header.hero p{color:var(--muted);max-width:720px;margin-bottom:1rem}
-    .btn-main{border:2px solid var(--accent);padding:.9rem 1.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px}
-    .features{padding:2.8rem 5%;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-    .card{background:var(--card);padding:1.1rem;border-radius:8px;border:1px solid #222}
-    .section-title{margin:1rem 0;font-size:1.25rem;border-left:5px solid var(--accent);padding-left:1rem}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;padding:0 5% 2rem}
-    .post{background:var(--card);border-radius:8px;overflow:hidden}
-    .post img{width:100%;height:170px;object-fit:cover;display:block}
-    .post .meta{padding: .9rem;color:var(--muted);font-size:.9rem}
-    .newsletter{background:linear-gradient(45deg,#1b1d24,#121212);padding:2rem 1rem;border-top:1px solid #222;text-align:center}
-    .newsletter input{padding:.6rem;border-radius:6px;border:none;width:300px;max-width:100%;margin-right:8px}
-    .btn-submit{background:var(--accent);color:#fff;padding:.6rem 1rem;border-radius:6px;border:none;cursor:pointer;font-weight:700}
-    footer{background:#000;color:var(--muted);padding:2rem 5%;margin-top:1.6rem}
-    .footer-grid{display:flex;gap:1rem;justify-content:space-between;flex-wrap:wrap}
-    .contact-block{min-width:240px}
-    .legal-section{max-width:1100px;margin:2rem auto;padding:1.2rem;background:var(--card);border-radius:8px;border:1px solid #222}
-    .legal-section h2{color:var(--accent);margin-bottom:.6rem}
-    form input, form textarea{width:100%;padding:.6rem;border-radius:6px;border:1px solid #222;background:#0b0b0b;color:#fff;margin-bottom:.6rem}
-    button.primary{background:var(--accent);border:none;padding:.7rem 1rem;border-radius:6px;color:#fff;font-weight:700;cursor:pointer}
-    nav .mobile-toggle{display:none}
-    @media(max-width:768px){
-      header.hero h1{font-size:1.7rem}
-      .nav-links{display:none}
-      nav .mobile-toggle{display:block;color:var(--muted)}
-      .footer-grid{flex-direction:column}
-    }
-  </style>
+        /* --- NAV --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 5%; position: fixed; width: 100%; top: 0;
+            background: rgba(15, 16, 20, 0.95); z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+        .logo span { color: var(--accent-color); }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a:hover { color: var(--accent-color); }
+        .btn-subscribe {
+            padding: 0.5rem 1.2rem; background: var(--accent-color);
+            border-radius: 4px; font-weight: bold;
+        }
+        .btn-subscribe:hover { background: var(--accent-hover); }
 
-  <!-- JSON-LD: Organization + Contact + Address (útil para revisiones de Google Ads) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "enelecolombia",
-    "url": "https://www.example.com/",
-    "logo": "https://www.example.com/logo.png",
-    "contactPoint": [{
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "obolenskaya06@gmail.com",
-      "areaServed": "CO"
-    }],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Cl. 106 #56-62",
-      "addressLocality": "Bogotá",
-      "postalCode": "111111",
-      "addressCountry": "CO"
-    }
-  }
-  </script>
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.6), var(--bg-color)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 1rem; margin-top: 60px;
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; max-width: 800px; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; }
+        .btn-main {
+            padding: 1rem 2rem; border: 2px solid var(--accent-color);
+            color: var(--text-main); font-weight: bold; text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-main:hover { background: var(--accent-color); }
+
+        /* --- CATEGORIAS / FEATURES --- */
+        .features { padding: 4rem 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center; }
+        .feature-card { padding: 2rem; background: var(--card-bg); border-radius: 8px; border: 1px solid #333; }
+        .feature-card h3 { margin-bottom: 1rem; color: var(--gold); }
+
+        /* --- BLOG GRID --- */
+        .latest-posts { padding: 4rem 5%; }
+        .section-title { margin-bottom: 2rem; font-size: 2rem; border-left: 5px solid var(--accent-color); padding-left: 1rem; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: var(--card-bg); border-radius: 8px; overflow: hidden; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card-img { height: 200px; background-color: #333; position: relative; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; }
+        .tag { position: absolute; top: 10px; right: 10px; background: var(--gold); color: #000; padding: 2px 8px; font-size: 0.8rem; font-weight: bold; border-radius: 2px; }
+        .card-content { padding: 1.5rem; }
+        .card-content h3 { margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; display: flex; gap: 10px; }
+        .read-more { color: var(--accent-color); font-weight: bold; font-size: 0.9rem; }
+
+        /* --- NEWSLETTER --- */
+        .newsletter { background: linear-gradient(45deg, #1b1d24, #121212); padding: 4rem 1rem; text-align: center; border-top: 1px solid #333; }
+        .newsletter input { padding: 0.8rem; width: 300px; max-width: 100%; border: none; border-radius: 4px; margin-right: 10px; }
+        .btn-submit { padding: 0.8rem 1.5rem; background: var(--accent-color); border: none; color: white; cursor: pointer; border-radius: 4px; font-weight: bold; }
+
+        /* --- FOOTER --- */
+        footer { padding: 3rem 5%; background: #000; color: var(--text-muted); text-align: center; font-size: 0.9rem; margin-top: 2rem; }
+        
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* En producción requeriría JS para menú hamburguesa */
+        }
+    </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav role="navigation" aria-label="Menú principal">
-    <div class="logo">enele<span>colombia</span></div>
-    <div class="nav-links" role="menubar" aria-label="Enlaces del sitio">
-      <a href="#inicio">Inicio</a>
-      <a href="#latest">Reseñas</a>
-      <a href="#news">Noticias</a>
-      <a href="#contact">Contacto</a>
-      <a href="#privacy">Política de Privacidad</a>
-      <a href="#terms">Términos</a>
-    </div>
-    <a class="btn-sub" href="#subs">Suscríbete</a>
-  </nav>
+    <nav>
+        <div class="logo">INFINITY<span>FILMS</span></div>
+        <ul class="nav-links">
+            <li><a href="#reviews">Reseñas</a></li>
+            <li><a href="#news">Noticias</a></li>
+            <li><a href="#editorials">Editoriales</a></li>
+            <li><a href="#podcast">Podcast</a></li>
+        </ul>
+        <a href="#subs" class="btn-subscribe">Suscríbete</a>
+    </nav>
 
-  <!-- HERO -->
-  <main>
-    <header id="inicio" class="hero" role="banner" aria-label="Presentación de enelecolombia">
-      <h1>El Cine, Más Allá de la Pantalla — enelecolombia</h1>
-      <p>Análisis profundos, críticas y noticias. Transparencia y datos de contacto públicos para cumplir con procesos de verificación de anunciantes.</p>
-      <a class="btn-main" href="#latest">Leer Últimos Artículos</a>
+    <header class="hero">
+        <h1>El Cine, Más Allá de la Pantalla</h1>
+        <p>Análisis profundos, críticas sin censura y la pasión por el séptimo arte que estabas buscando. Bienvenidos a InfinityFilms.</p>
+        <a href="#latest" class="btn-main">Leer Últimos Artículos</a>
     </header>
 
-    <!-- FEATURES -->
-    <section class="features" aria-labelledby="que-hacemos" id="features">
-      <div>
-        <h3 style="color:var(--muted);margin-bottom:.6rem">Qué hacemos</h3>
-      </div>
-      <div class="card">
-        <h4>🎬 Reseñas Honestas</h4>
-        <p style="color:var(--muted);margin-top:.6rem">Críticas sin spoilers que valoran dirección, guion y fotografía.</p>
-      </div>
-      <div class="card">
-        <h4>🕵️ Análisis</h4>
-        <p style="color:var(--muted);margin-top:.6rem">Explicaciones de finales, teorías y análisis de universos cinematográficos.</p>
-      </div>
-      <div class="card">
-        <h4>🏆 Festivales y Premios</h4>
-        <p style="color:var(--muted);margin-top:.6rem">Cobertura de festivales internacionales y temporada de premios.</p>
-      </div>
-    </section>
-
-    <!-- LATEST POSTS (ejemplo) -->
-    <section id="latest" class="legal-section" aria-labelledby="en-tendencia">
-      <h2 class="section-title" id="en-tendencia">En Tendencia</h2>
-      <div class="grid" role="list">
-        <article class="post" role="listitem">
-          <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cine clásico">
-          <div class="meta">
-            <strong>El resurgir del cine Noir en 2024</strong><br>
-            <span style="color:var(--muted)">Por Alex R. • Hace 2 horas</span>
-            <p style="color:var(--muted);margin-top:.5rem">Analizamos cómo los directores modernos adoptan sombras y moral ambigua...</p>
-          </div>
-        </article>
-
-        <article class="post" role="listitem">
-          <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="rodaje">
-          <div class="meta">
-            <strong>Confirmado reparto para nueva saga Sci-Fi</strong><br>
-            <span style="color:var(--muted)">Por CineStaff • Ayer</span>
-            <p style="color:var(--muted);margin-top:.5rem">Todo lo que sabemos sobre la producción que inicia rodaje esta temporada...</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- NEWSLETTER -->
-    <section id="subs" class="newsletter" aria-labelledby="newsletter-title">
-      <h3 id="newsletter-title" style="margin-bottom:.6rem">Únete al Club de Cinefilia</h3>
-      <p style="color:var(--muted);margin-bottom:.6rem">Recibe reseñas y noticias semanales por correo.</p>
-      <form onsubmit="event.preventDefault(); subscribe();" aria-label="Formulario de suscripción">
-        <input id="subsEmail" type="email" placeholder="Tu correo electrónico..." required />
-        <button class="btn-submit" type="submit">Suscribirme</button>
-      </form>
-      <p id="subsNote" style="color:var(--muted);margin-top:.6rem;font-size:.9rem">No compartimos tu email con terceros sin consentimiento. Puedes revisar la Política de Privacidad abajo.</p>
-    </section>
-
-    <!-- CONTACT (sección real en la misma página) -->
-    <section id="contact" class="legal-section" aria-labelledby="contact-title">
-      <h2 id="contact-title" class="section-title">Contacto</h2>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-        <div>
-          <div style="background:var(--card);padding:12px;border-radius:8px;border:1px solid #222">
-            <h3 style="margin-bottom:.4rem">Datos de contacto</h3>
-            <p style="color:var(--muted);margin-bottom:.6rem">
-              <strong>Representante legal:</strong><br>
-              RAFAEL ANTONIO PINA PINARED
-            </p>
-            <p style="color:var(--muted);margin-bottom:.6rem">
-              <strong>Dirección:</strong><br>
-              Cl. 106 #56-62, Bogotá, 111111, Colombia
-            </p>
-            <p style="color:var(--muted);margin-bottom:.6rem">
-              <strong>Email:</strong><br>
-              <a href="mailto:obolenskaya06@gmail.com">obolenskaya06@gmail.com</a>
-            </p>
-            <p style="color:var(--muted);font-size:.95rem">Estos datos están publicados para facilitar la verificación por parte de plataformas publicitarias y usuarios.</p>
-          </div>
+    <section class="features">
+        <div class="feature-card">
+            <h3>🎬 Reseñas Honestas</h3>
+            <p>Sin spoilers innecesarios. Valoramos la narrativa, la fotografía y la dirección.</p>
         </div>
-
-        <div>
-          <form id="contactForm" onsubmit="handleContact(event)" style="background:var(--card);padding:12px;border-radius:8px;border:1px solid #222">
-            <label for="c_name" style="display:block;color:var(--muted);margin-bottom:.3rem">Nombre</label>
-            <input id="c_name" name="name" required placeholder="Tu nombre" />
-            <label for="c_email" style="display:block;color:var(--muted);margin-bottom:.3rem">Email</label>
-            <input id="c_email" name="email" type="email" required placeholder="tu@correo.com" />
-            <label for="c_msg" style="display:block;color:var(--muted);margin-bottom:.3rem">Mensaje</label>
-            <textarea id="c_msg" name="message" rows="5" required placeholder="Escribe tu mensaje"></textarea>
-            <button class="primary" type="submit">Enviar mensaje</button>
-            <p style="color:var(--muted);font-size:.9rem;margin-top:.6rem">También puedes escribir directamente a <a href="mailto:obolenskaya06@gmail.com">obolenskaya06@gmail.com</a>.</p>
-          </form>
+        <div class="feature-card">
+            <h3>🕵️ Análisis de Lore</h3>
+            <p>Explicaciones de finales, huevos de pascua y teorías sobre tus sagas favoritas.</p>
         </div>
-      </div>
-
-      <div style="margin-top:1rem">
-        <h3 style="margin-bottom:.4rem">Ubicación (mapa)</h3>
-        <iframe loading="lazy" width="100%" height="320" style="border:0;border-radius:8px"
-          src="https://www.google.com/maps?q=Cl.+106+%2356-62+Bogot%C3%A1,+111111+Colombia&output=embed"
-          aria-label="Mapa de ubicación de la dirección oficial">
-        </iframe>
-        <p style="color:var(--muted);margin-top:.6rem;font-size:.9rem">Nota: el iframe es una búsqueda embed de Google Maps con la dirección publicada arriba.</p>
-      </div>
+        <div class="feature-card">
+            <h3>🏆 Temporada de Premios</h3>
+            <p>Cobertura completa de los Oscars, Globos de Oro y festivales internacionales.</p>
+        </div>
     </section>
 
-    <!-- PRIVACY (en la misma página) -->
-    <section id="privacy" class="legal-section" aria-labelledby="privacy-title">
-      <h2 id="privacy-title" class="section-title">Política de Privacidad</h2>
-      <p style="color:var(--muted)"><strong>Fecha de entrada en vigor:</strong> 01 de enero de 2024</p>
+    <section id="latest" class="latest-posts">
+        <h2 class="section-title">En Tendencia</h2>
+        <div class="grid">
+            <article class="card">
+                <div class="card-img">
+                    <span class="tag">Crítica</span>
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cine">
+                </div>
+                <div class="card-content">
+                    <div class="meta"><span>Por Alex R.</span> • <span>Hace 2 horas</span></div>
+                    <h3>El resurgir del cine Noir en 2024</h3>
+                    <p style="color:#ccc; font-size:0.9rem; margin-bottom:1rem;">Analizamos cómo los directores modernos están adoptando las sombras y la moral ambigua...</p>
+                    <a href="#" class="read-more">Leer artículo →</a>
+                </div>
+            </article>
 
-      <p style="color:var(--muted)">En enelecolombia valoramos tu privacidad. Esta Política describe qué datos recolectamos, por qué y cómo puedes ejercer tus derechos.</p>
+            <article class="card">
+                <div class="card-img">
+                    <span class="tag">Noticia</span>
+                    <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cine">
+                </div>
+                <div class="card-content">
+                    <div class="meta"><span>Por CineStaff</span> • <span>Ayer</span></div>
+                    <h3>Confirmado el reparto para la nueva saga Sci-Fi</h3>
+                    <p style="color:#ccc; font-size:0.9rem; margin-bottom:1rem;">Todo lo que sabemos sobre la producción más cara de la década que arranca rodaje...</p>
+                    <a href="#" class="read-more">Leer artículo →</a>
+                </div>
+            </article>
 
-      <h3 style="color:var(--accent)">1. Responsable del tratamiento</h3>
-      <p style="color:var(--muted)">RAFAEL ANTONIO PINA PINARED — Cl. 106 #56-62, Bogotá, 111111, Colombia — Email: <a href="mailto:obolenskaya06@gmail.com">obolenskaya06@gmail.com</a>.</p>
-
-      <h3 style="color:var(--accent)">2. Datos que recolectamos</h3>
-      <ul style="color:var(--muted);margin-left:1rem">
-        <li>Datos que nos proporcionas: email, nombre y mensajes (formularios y suscripciones).</li>
-        <li>Datos técnicos y de uso: direcciones IP, cookies y señales del navegador para analítica.</li>
-      </ul>
-
-      <h3 style="color:var(--accent)">3. Finalidades</h3>
-      <ul style="color:var(--muted);margin-left:1rem">
-        <li>Enviar boletines si te suscribes.</li>
-        <li>Responder consultas y comunicaciones recibidas.</li>
-        <li>Mejorar el sitio mediante analítica.</li>
-        <li>Cumplir derechos y obligaciones legales.</li>
-      </ul>
-
-      <h3 style="color:var(--accent)">4. Cookies y publicidad</h3>
-      <p style="color:var(--muted)">Usamos cookies propias y de terceros (analytics y publicidad). Si trabajas con redes publicitarias, añade sus nombres concretos en esta sección. Puedes desactivar cookies desde tu navegador; algunas funciones podrían verse afectadas.</p>
-
-      <h3 style="color:var(--accent)">5. Compartir con terceros</h3>
-      <p style="color:var(--muted)">No vendemos datos personales. Compartimos información con proveedores de servicios (email, hosting, analytics) que actúan como procesadores contractuales.</p>
-
-      <h3 style="color:var(--accent)">6. Derechos</h3>
-      <p style="color:var(--muted)">Puedes solicitar acceso, rectificación, supresión, oposición y portabilidad. Para ejercerlos contacta a <a href="mailto:obolenskaya06@gmail.com">obolenskaya06@gmail.com</a>.</p>
-
-      <h3 style="color:var(--accent)">7. Seguridad</h3>
-      <p style="color:var(--muted)">Aplicamos medidas técnicas y organizativas razonables. Sin embargo, ningún sistema es totalmente infalible.</p>
-
-      <p style="color:var(--muted);margin-top:.6rem">Si utilizas redes publicitarias (AdSense, DSPs, etc.) actualiza esta política con los nombres de los partners y los propósitos (personalización de anuncios, medición, etc.).</p>
+            <article class="card">
+                <div class="card-img">
+                    <span class="tag">Ensayo</span>
+                    <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e63?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cine">
+                </div>
+                <div class="card-content">
+                    <div class="meta"><span>Por Sarah M.</span> • <span>Hace 3 días</span></div>
+                    <h3>¿Por qué amamos a los villanos?</h3>
+                    <p style="color:#ccc; font-size:0.9rem; margin-bottom:1rem;">Un viaje psicológico a través de los antagonistas más icónicos de la historia.</p>
+                    <a href="#" class="read-more">Leer artículo →</a>
+                </div>
+            </article>
+        </div>
     </section>
 
-    <!-- TERMS -->
-    <section id="terms" class="legal-section" aria-labelledby="terms-title">
-      <h2 id="terms-title" class="section-title">Términos y Condiciones</h2>
-
-      <p style="color:var(--muted)">Estos Términos regulan el uso del sitio enelecolombia. Al acceder y usar este sitio aceptas los términos que se indican a continuación.</p>
-
-      <h3 style="color:var(--accent)">1. Servicios</h3>
-      <p style="color:var(--muted)">Proveemos contenidos editoriales, reseñas y noticias sobre cine. No garantizamos la disponibilidad continua del sitio.</p>
-
-      <h3 style="color:var(--accent)">2. Propiedad intelectual</h3>
-      <p style="color:var(--muted)">El contenido original del sitio es propiedad de enelecolombia o está licenciado. Queda prohibida la reproducción total o parcial sin autorización.</p>
-
-      <h3 style="color:var(--accent)">3. Conducta</h3>
-      <p style="color:var(--muted)">No publiques contenido ilegal, difamatorio o que infrinja derechos. Nos reservamos el derecho de moderar y eliminar contenidos.</p>
-
-      <h3 style="color:var(--accent)">4. Limitación de responsabilidad</h3>
-      <p style="color:var(--muted)">enelecolombia no se hace responsable por daños derivados del uso del sitio o de la confianza en la información publicada.</p>
-
-      <h3 style="color:var(--accent)">5. Legislación aplicable</h3>
-      <p style="color:var(--muted)">Estos términos se rigen por la legislación vigente en Colombia.</p>
-
-      <p style="color:var(--muted);margin-top:.6rem">Consultas legales: <a href="mailto:obolenskaya06@gmail.com">obolenskaya06@gmail.com</a></p>
+    <section id="subs" class="newsletter">
+        <h2 style="margin-bottom: 1rem;">Únete al Club de Cinefilia</h2>
+        <p style="color: #ccc; margin-bottom: 2rem;">Recibe las mejores reseñas y noticias semanales directamente en tu correo.</p>
+        <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+            <input type="email" placeholder="Tu correo electrónico..." required>
+            <button type="submit" class="btn-submit">Suscribirme</button>
+        </form>
     </section>
 
-  </main>
-
-  <!-- FOOTER -->
-  <footer role="contentinfo">
-    <div class="footer-grid">
-      <div class="contact-block">
-        <h4 style="margin-bottom:.4rem">Contacto</h4>
-        <p style="color:var(--muted);margin-bottom:.2rem">RAFAEL ANTONIO PINA PINARED</p>
-        <p style="color:var(--muted);margin-bottom:.2rem">Cl. 106 #56-62, Bogotá, 111111, Colombia</p>
-        <p style="color:var(--muted)">Email: <a href="mailto:obolenskaya06@gmail.com">obolenskaya06@gmail.com</a></p>
-      </div>
-
-      <div>
-        <h4 style="margin-bottom:.4rem">Enlaces</h4>
-        <p style="color:var(--muted)"><a href="#contact">Contacto</a> • <a href="#privacy">Política de Privacidad</a> • <a href="#terms">Términos y Condiciones</a></p>
-      </div>
-
-      <div>
-        <h4 style="margin-bottom:.4rem">Síguenos</h4>
-        <p style="color:var(--muted)"><a href="#" style="margin-right:6px">Twitter</a><a href="#" style="margin-right:6px">Instagram</a><a href="#">Letterboxd</a></p>
-      </div>
-    </div>
-
-    <p style="color:var(--muted);margin-top:1rem">© <span id="year"></span> enelecolombia. Todos los derechos reservados.</p>
-  </footer>
-
-  <script>
-    // Actualiza año del footer
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Simulación de envío de formulario de contacto (reemplazar por backend en producción)
-    function handleContact(e){
-      e.preventDefault();
-      const name = document.getElementById('c_name').value || 'Usuario';
-      const email = document.getElementById('c_email').value || '';
-      alert('Gracias, ' + name + '. Tu mensaje fue recibido. Responderemos a ' + email + ' lo antes posible.');
-      document.getElementById('contactForm').reset();
-    }
-
-    // Simulación suscripción
-    function subscribe(){
-      const em = document.getElementById('subsEmail').value || '';
-      if(!em){ alert('Por favor ingresa un email válido.'); return; }
-      document.getElementById('subsEmail').value = '';
-      alert('Gracias. Revisaremos tu suscripción y te enviaremos un correo a ' + em + '.');
-    }
-  </script>
-
-  <!-- Aviso breve para revisiones de Google Ads -->
-  <!--
-    Puntos ya implementados para cumplimiento Google Ads:
-    - Página única con Política de Privacidad y Términos accesibles.
-    - Contacto real visible: nombre legal, dirección física y email.
-    - JSON-LD con datos de la organización y contactPoint.
-    - Mapa embed para verificación de ubicación.
-    - En producción: sustituir example.com por dominio real y añadir logotipo válido.
-    - Si usas redes publicitarias concretas (AdSense, etc.), añade sus nombres en la sección Cookies/Partners de la Política de Privacidad.
-  -->
+    <footer>
+        <h2 class="logo" style="margin-bottom:1rem;">INFINITY<span>FILMS</span></h2>
+        <p>© 2024 InfinityFilms. Todos los derechos reservados.</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" style="margin:0 10px;">Twitter</a>
+            <a href="#" style="margin:0 10px;">Instagram</a>
+            <a href="#" style="margin:0 10px;">Letterboxd</a>
+        </div>
+    </footer>
 
 </body>
 </html>
